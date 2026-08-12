@@ -93,22 +93,18 @@ MovieStreamingPlatform/
 
 ## 📌 Main Operations
 
-The `StreamingPlatform` class provides operations such as:
+The `StreamingPlatform` class provides key operations such as:
 
-* `getAvailableMovies()`
-* `getUnavailableMovies()`
-* `getMoviesByGenre()`
-* `getMoviesReleasedAfter()`
-* `getMovieTitles()`
-* `getUserNames()`
-* `getMovieRatings()`
-* `getMovieDurations()`
-* `getAllGenres()`
-* `sortMoviesByTitle()`
-* `getTop3RatedMovies()`
-* `getNewestMovies()`
-* `getOldestMovie()`
-* `getNewestMovie()`
+* `getAvailableMovies()` / `getUnavailableMovies()`
+* `getMoviesByGenre()` / `getMoviesReleasedAfter()`
+* `getMovieTitles()` / `getUserNames()`
+* `getMovieRatings()` / `getMovieDurations()`
+* `getAllGenres()` / `sortMoviesByTitle()`
+* `getTop3RatedMovies()` / `getHighestRatedMovie()`
+* `getMostPopularGenre()` / `getTopReviewer()`
+* `getAllWatchedMovies()`
+* `groupMoviesByGenre()` / `partitionMoviesByAvailability()`
+* `averageRatingPerGenre()` / `totalDurationPerGenre()`
 
 ## 🎯 Project Goal
 

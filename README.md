@@ -1,130 +1,239 @@
 # 🎬 Movie Streaming Platform
 
-A Java-based Movie Streaming Platform that demonstrates Object-Oriented Programming, Collections, Lambda Expressions, and the Stream API.
+A Java-based Movie Streaming Platform built using **Object-Oriented Programming (OOP), Java Collections, Lambda Expressions, Stream API, MySQL, and JDBC**.
 
-The project simulates a simple streaming platform where users can browse movies, filter movies by different criteria, view ratings, and perform various operations on movies and users.
+The project simulates the core operations of a movie streaming platform, including user management, movie catalog management, reviews, watchlists, watch history, and subscription management.
 
-## 🚀 Features
+---
 
-* Add and manage movies
-* Add and manage users
-* Organize movies by genre
-* Search and filter movies
-* Get available and unavailable movies
-* Get movies released after a specific year
-* Get movie titles and user names
-* Calculate and work with movie ratings
-* Sort movies by title
-* Get the top-rated movies
-* Get the newest and oldest movies
-* Work with movie durations
-* Manage movie genres
-* Perform data processing using Java Streams
+## ✨ Features
 
-## 🛠️ Technologies Used
+### 👤 User Management
+- Register and manage users.
+- Retrieve users by ID, username, or email.
+- Manage account statuses: `ACTIVE`, `SUSPENDED`, and `CLOSED`.
+- Manage user roles: `USER` and `ADMIN`.
+- Filter and sort users.
 
-* Java
-* IntelliJ IDEA
-* Git
-* GitHub
+### 🎥 Movie Management
+- Add, update, retrieve, search, and delete movies.
+- Manage movie availability.
+- Search movies by title.
+- Filter and sort movies.
+- Retrieve long movies based on duration.
 
-## 🧠 Concepts Practiced
+### 🏷️ Genre Management
+- Create and manage movie genres.
+- Assign multiple genres to movies.
+- Retrieve movies by genre and genres by movie.
 
-### Object-Oriented Programming
+### ⭐ Review Management
+- Add, update, and delete reviews.
+- Retrieve reviews by movie or user.
+- Validate movie ratings.
+- Calculate average movie ratings.
+- Filter positive reviews and sort reviews by rating.
 
-The project applies several OOP concepts, including:
+### 📋 Watchlist Management
+- Add movies to users' watchlists.
+- Check whether a movie exists in a watchlist.
+- Retrieve and remove watchlist entries.
 
-* Classes and Objects
-* Encapsulation
-* Inheritance
-* Abstraction
-* Interfaces
-* Polymorphism
+### ⏱️ Watch History
+- Track users' movie-watching progress.
+- Store watched time in seconds.
+- Mark movies as completed.
+- Retrieve completed and incomplete movies.
+- Sort watch history by progress.
 
-### Java Collections
+### 💳 Subscription Management
+- Create and manage subscription plans.
+- Configure plan prices, durations, and maximum devices.
+- Subscribe users to plans.
+- Manage subscription statuses: `ACTIVE`, `EXPIRED`, and `CANCELLED`.
+- Retrieve and sort subscription information.
 
-The project uses different Java Collections depending on the required operation:
+### 📊 Reports
+- User statistics and account summaries.
+- Movie statistics and average durations.
+- Review statistics and average ratings.
+- Watch activity and completion rates.
+- Subscription statistics and plan summaries.
 
-* `List`
-* `ArrayList`
-* `Map`
-* `HashMap`
-* `Set`
-* `HashSet`
+---
 
-### Lambda Expressions
+## 🧱 Project Architecture
 
-Lambda expressions are used to simplify operations such as filtering, sorting, and processing collections.
+The project follows a layered architecture to separate responsibilities and keep the code organized.
 
-### Stream API
+| Package | Responsibility |
+|---|---|
+| `application` | Application entry point and execution |
+| `config` | Database connection configuration |
+| `model` | Entity classes and enums |
+| `dao` | Database access and SQL operations |
+| `service` | Business logic and validations |
+| `workflow` | Coordination of multi-step operations and transactions |
+| `report` | Database reports and statistics |
 
-The project makes extensive use of Java Streams for:
-
-* Filtering
-* Mapping
-* Sorting
-* Collecting
-* Grouping
-* Finding elements
-* Matching elements
-* Calculating statistics
-* Processing collections without traditional loops
-* Advanced Grouping and Partitioning (`Collectors.groupingBy`, `partitioningBy`)
-* Summary Statistics (`IntSummaryStatistics`, `DoubleSummaryStatistics`)
-
-## 📂 Project Structure
+### 📁 Project Structure
 
 ```text
 MovieStreamingPlatform/
 │
+├── MovieStreamingDB/
+│   ├── database_setup.sql
+│   ├── tables.sql
+│   ├── basic_queries.sql
+│   └── indexes.sql
+│
 ├── src/
-│   └── ...
+│   ├── config/
+│   │   └── database.properties.example
+│   │
+│   └── com/
+│       └── moviestreaming/
+│           ├── application/
+│           │   └── Main.java
+│           │
+│           ├── config/
+│           │   └── DatabaseConnection.java
+│           │
+│           ├── model/
+│           │   ├── enums/
+│           │   └── Entity Classes
+│           │
+│           ├── dao/
+│           │   └── DAO Classes
+│           │
+│           ├── service/
+│           │   └── Service Classes
+│           │
+│           ├── workflow/
+│           │   └── Workflow Classes
+│           │
+│           └── report/
+│               └── Report Classes
 │
 ├── .gitignore
 └── README.md
 ```
 
-## ▶️ How to Run
+---
 
-1. Clone the repository.
-2. Open the project in IntelliJ IDEA.
-3. Make sure Java is installed and configured.
-4. Run the `Main` class.
+## 🗄️ Database Design
 
-## 📌 Main Operations
+The project uses **MySQL** with a database named `MovieStreamingDB`.
 
-The `StreamingPlatform` class provides key operations such as:
+It contains 9 tables:
 
-* `getAvailableMovies()` / `getUnavailableMovies()`
-* `getMoviesByGenre()` / `getMoviesReleasedAfter()`
-* `getMovieTitles()` / `getUserNames()`
-* `getMovieRatings()` / `getMovieDurations()`
-* `getAllGenres()` / `sortMoviesByTitle()`
-* `getTop3RatedMovies()` / `getHighestRatedMovie()`
-* `getMostPopularGenre()` / `getTopReviewer()`
-* `getAllWatchedMovies()`
-* `groupMoviesByGenre()` / `partitionMoviesByAvailability()`
-* `averageRatingPerGenre()` / `totalDurationPerGenre()`
+| Table | Description |
+|---|---|
+| `users` | Stores user information, roles, and account statuses |
+| `movies` | Stores movie details |
+| `genres` | Stores movie genres |
+| `movie_genres` | Connects movies with their genres |
+| `reviews` | Stores user reviews and ratings |
+| `watch_history` | Tracks users' watching progress |
+| `watchlist` | Stores movies saved by users |
+| `subscription_plans` | Stores available subscription plans |
+| `user_subscriptions` | Stores users' subscriptions |
 
-## 🎯 Project Goal
-
-The main goal of this project is to apply and reinforce core Java concepts by building a complete practical application using OOP, Collections, Lambda Expressions, and the Stream API.
-
-## 🔮 Future Improvements
-
-Possible future improvements include:
-
-* Adding a database
-* Adding a graphical user interface
-* Adding user authentication
-* Adding a recommendation system
-* Connecting the project to a backend using Spring Boot
-* Adding persistent data storage
+The database scripts are located in the `MovieStreamingDB` directory.
 
 ---
 
-### 👨‍💻 Author
+## 🛠️ Technologies Used
+
+- **Java** – Core programming language.
+- **Object-Oriented Programming (OOP)** – Encapsulation, inheritance, polymorphism, abstraction, and interfaces.
+- **Java Collections Framework** – Managing and processing collections of objects.
+- **Lambda Expressions** – Functional programming operations.
+- **Stream API** – Filtering, sorting, mapping, and processing data.
+- **MySQL** – Relational database management system.
+- **JDBC** – Connecting Java applications to MySQL.
+- **PreparedStatement** – Executing parameterized SQL queries.
+- **Git & GitHub** – Version control and project management.
+- **IntelliJ IDEA** – Development environment.
+
+---
+
+## ⚙️ Setup and Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone YOUR_REPOSITORY_URL
+```
+
+### 2. Create the Database
+
+Open MySQL and execute the SQL scripts in this order:
+
+1. `database_setup.sql`
+2. `tables.sql`
+3. `indexes.sql`
+
+The `basic_queries.sql` file contains example SQL queries.
+
+### 3. Configure Database Connection
+
+Inside `src/config/`, create a local file named:
+
+```text
+database.properties
+```
+
+Add your own database credentials:
+
+```properties
+db.url=jdbc:mysql://localhost:3306/MovieStreamingDB
+db.username=YOUR_USERNAME
+db.password=YOUR_PASSWORD
+```
+
+The repository includes `database.properties.example` as a configuration template.
+
+**Important:** Never upload your actual database credentials to GitHub.
+
+### 4. Add MySQL Connector/J
+
+Download **MySQL Connector/J** and add the JAR file to the project libraries in IntelliJ IDEA.
+
+### 5. Run the Application
+
+Open the project in IntelliJ IDEA and run:
+
+```text
+com.moviestreaming.application.Main
+```
+
+The `Main` class executes a demonstration of the application's services, workflows, and reports using sample data.
+
+> ⚠️ The demo inserts records with predefined unique values. Run it against a fresh, empty database. Running it again without cleaning the sample data may cause duplicate-entry errors.
+
+---
+
+## 📚 What This Project Demonstrates
+
+This project applies Java programming concepts in a practical application connected to a relational database.
+
+It demonstrates:
+- Designing and organizing a multi-layered Java application.
+- Applying OOP principles in a real project.
+- Working with Java Collections, Lambda Expressions, and Stream API.
+- Designing relational database tables and relationships.
+- Implementing CRUD operations using JDBC.
+- Using `PreparedStatement` and `ResultSet`.
+- Separating database operations from business logic.
+- Managing multi-step operations and transactions.
+- Generating reports and statistics using SQL.
+
+---
+
+## 👨‍💻 Author
 
 **Omar Mattar**
 
-Java Developer in Progress 🚀
+Java Backend Development Learner
+

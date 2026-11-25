@@ -1,40 +1,27 @@
 # IntelliJ IDEA
-
 .idea/
 *.iml
 
-# Build output
-
-out/
-target/
-
 # Compiled Java files
-
 *.class
 
-# Eclipse
+# Build output
+out/
+target/
+build/
 
-.apt_generated/
-.classpath
-.factorypath
-.project
-.settings/
-.springBeans
-.sts4-cache
-bin/
+# Database credentials
+src/config/database.properties
 
-# NetBeans
+# Logs
+*.log
+logs/
 
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-# VS Code
-
-.vscode/
-
-# Mac OS
-
+# Operating system files
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
